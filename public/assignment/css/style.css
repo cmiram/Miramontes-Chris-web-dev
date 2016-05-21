@@ -5,3 +5,19 @@ input.form-control {
 body {
     padding-top: 60px;
 }
+
+.navbar-default .navbar-brand {
+    color: black;
+}
+
+p.navbar-text.pull-right {
+    margin-right: 15px;
+}
+
+p.navbar-text.pull-left {
+    margin-left: 15px;
+}
+
+.glyphicon-user {
+    color: cornflowerblue;
+}
