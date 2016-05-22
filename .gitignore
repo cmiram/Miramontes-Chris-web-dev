@@ -1,3 +1,5 @@
 node_modules
 .idea
 public/assignment/fonts
+public/assignments/css/bootstrap.css
+public/assignments/css/bootstrap.css.map
