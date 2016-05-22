@@ -30,3 +30,7 @@ p.navbar-text.pull-left {
     padding-bottom: 5px;
     border-bottom-left-radius: 4px;
 }
+
+.list-group-item {
+    border: hidden;
+}
