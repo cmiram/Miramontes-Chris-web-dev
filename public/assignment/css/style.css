@@ -34,3 +34,7 @@ p.navbar-text.pull-left {
 .list-group-item {
     border: hidden;
 }
+
+.btn-block {
+    margin-bottom: 5px;
+}
