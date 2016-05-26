@@ -47,7 +47,7 @@
                 templateUrl: "assignment/views/widget/widget-edit.view.client.html"
             })
             .otherwise({
-                templateUrl: "/Resources/home.html"
+                redirectTo: "/login"
             });
     }
 })();
