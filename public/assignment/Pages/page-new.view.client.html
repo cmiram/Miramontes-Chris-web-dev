@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="SiteMakerApp">
+
 <head>
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -10,16 +11,21 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../css/style.css" rel="stylesheet"/>
 </head>
-<body>
 
+<body>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-head">
+                <p class="navbar-text pull-left">
+                    <a href="page-list.view.client.html" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                </p>
                 <a class="navbar-brand" href="#">
-                    Profile
+                    New Page
                 </a>
                 <p class="navbar-text pull-right">
-                    <a href="profile.html" class="navbar-link">
+                    <a href="page-list.view.client.html" class="navbar-link">
                         <span class="glyphicon glyphicon-ok"></span>
                     </a>
                 </p>
@@ -28,45 +34,23 @@
     </nav>
 
     <div class="container">
-
-        <div class="alert alert-success">
-            Successfully updated your profile!
-        </div>
-
-        <div class="alert alert-danger">
-            Unable to update your profile
-        </div>
-
         <form>
             <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Username">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="My Page"/>
             </div>
             <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
-            </div>
-            <div class="form-group">
-                <label for="first-name">First Name</label>
-                <input type="text" class="form-control" id="first-name" placeholder="Alice">
-            </div>
-            <div class="form-group">
-                <label for="last-name">Last Name</label>
-                <input type="text" class="form-control" id="last-name" placeholder="Alice">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" placeholder="My Page Title"/>
             </div>
         </form>
-
-        <a class="btn btn-primary btn-block"
-           href="../Website/website-list.html">Websites</a>
-        <a class="btn btn-danger btn-block"
-           href="login.html">Logout</a>
     </div>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-head">
                 <p class="navbar-text pull-right">
-                    <a href="../User/profile.html" class="navbar-link">
+                    <a href="../User/profile.view.client.html" class="navbar-link">
                         <span class="glyphicon glyphicon-user"></span>
                     </a>
                 </p>
@@ -74,4 +58,5 @@
         </div>
     </nav>
 </body>
+
 </html>
