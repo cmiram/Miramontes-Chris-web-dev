@@ -21,17 +21,21 @@
         return api;
 
         function createUser(user) {
-            var newUser = {
-                _id: Date.prototype.getDate().getValue(),
-                username: user.username,
-                password: user.password,
-                firstname: user.firstname,
-                lastname: user.lastname
+            if(findUserByUsernameAndPassword(user.username, user.password) == null) {
+                var newUser = {
+                    _id: Date.prototype.getDate().getValue(),
+                    username: user.username,
+                    password: user.password,
+                    firstname: null,
+                    lastname: null
+                }
+                users.push(newUser);
+                return true;
             }
-            users.push(newUser);
+            return false;
         }
         function findUserByUsernameAndPassword(username, password) {
-            for(var i in user) {
+            for(var i in users) {
                 if (users[i].username === username && users[i].password === password) {
                     return users[i];
                 }
@@ -39,7 +43,7 @@
             return null;
         }
         function findUserById(id) {
-            for(var i in user) {
+            for(var i in users) {
                 if (users[i]._id === id) {
                     return users[i];
                 }
