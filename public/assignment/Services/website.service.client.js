@@ -22,7 +22,7 @@
         return api;
 
         function createWebsite(website, developerId) {
-            website._id = (new Date()).getTime();
+            website._id = (new Date()).getTime().toString();
             website.developerId = developerId;
             websites.push(website);
             return website;
@@ -51,6 +51,7 @@
             for(var i in websites) {
                 if(websites[i]._id === websiteId) {
                     websites[i].name = website.name;
+                    websites[i].description = website.description;
                     return true;
                 }
             }
@@ -60,7 +61,7 @@
         function deleteWebsite(websiteId) {
             for (var i in websites) {
                 if (websites[i]._id === websiteId) {
-                    websites.remove(i);
+                    websites.splice(i,1);
                     return true;
                 }
             }

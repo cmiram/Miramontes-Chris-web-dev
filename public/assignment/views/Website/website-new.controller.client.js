@@ -14,10 +14,12 @@
         init();
         
         function addNewWebsite(website) {
+            console.log(website);
             if(website.name) {
                 var result = WebsiteService.createWebsite(website, vm.userId);
 
                 if(result) {
+                    console.log(WebsiteService.findWebsitesByUser(vm.userId));
                     $location.url("/user/" + vm.userId + "/website");
                 }
                 else {
