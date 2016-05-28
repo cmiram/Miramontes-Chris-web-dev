@@ -5,20 +5,36 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
+
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+
     <script src="app.js"></script>
     <script src="config.js"></script>
+
     <script src="Services/user.service.client.js"></script>
     <script src="Services/website.service.client.js"></script>
     <script src="Services/page.service.client.js"></script>
     <script src="Services/widget.service.client.js"></script>
-    <script src="views/Pages/page.controller.client.js"></script>
-    <script src="views/User/user.controller.client.js"></script>
-    <script src="views/Website/website.controller.client.js"></script>
-    <script src="views/Widget/widget.controller.client.js"></script>
+
+    <script src="views/Pages/page-edit.controller.client.js"></script>
+    <script src="views/Pages/page-list.controller.client.js"></script>
+    <script src="views/Pages/page-new.controller.client.js"></script>
+
+    <script src="views/User/login.controller.client.js"></script>
+    <script src="views/User/profile.controller.client.js"></script>
+    <script src="views/User/register.controller.client.js"></script>
+
+    <script src="views/Website/website-edit.controller.client.js"></script>
+    <script src="views/Website/website-list.controller.client.js"></script>
+    <script src="views/Website/website-new.controller.client.js"></script>
+
+    <script src="views/Widget/widget-new.view.client.js"></script>
+    <script src="views/Widget/widget-edit.view.client.html"></script>
+    <script src="views/Widget/widget-list.view.client.html"></script>
+
 </head>
 <body ng-app="WebAppMaker">
 <div ng-view ></div>
