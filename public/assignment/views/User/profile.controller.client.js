@@ -9,7 +9,7 @@
         vm.updateUser = updateUser;
 
         function init() {
-            vm.user = UserService.findUserById(vm.userId);
+            vm.user = JSON.parse(JSON.stringify(UserService.findUserById(vm.userId)));
         }
         init();
 
