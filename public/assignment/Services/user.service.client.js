@@ -28,7 +28,7 @@
             }
             
             var newUser = {
-                _id: (new Date()).getTime(),
+                _id: (new Date()).getTime().toString(),
                 username: user.username,
                 password: user.password,
                 firstname: null,
@@ -58,6 +58,7 @@
                 if(users[i]._id === id) {
                     users[i].firstName = user.firstName;
                     users[i].lastName = user.lastName;
+                    users[i].email = user.email;
                     return true;
                 }
             }
