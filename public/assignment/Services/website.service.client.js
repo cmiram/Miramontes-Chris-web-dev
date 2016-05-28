@@ -33,7 +33,7 @@
         function findWebsitesByUser(userId) {
             var usersWebsites = [];
             for(var i in websites) {
-                if(websites[i].developer === userId) {
+                if(websites[i].developerId === userId) {
                     usersWebsites.push(websites[i]);
                 }
             }

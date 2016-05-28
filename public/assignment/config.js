@@ -30,6 +30,11 @@
                 controller: "EditWebsiteController",
                 controllerAs: "model"
             })
+            .when("/user/:userId/website/websiteNew", {
+                templateUrl: "/views/website/website-new.view.client.html",
+                controller: "NewWebsiteController",
+                controllerAs: "model"
+            })
             .when("/user/:userId/website/:websiteId/page", {
                 templateUrl: "views/Pages/page-list.view.client.html",
                 controller: "PageListController",
