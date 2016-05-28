@@ -17,9 +17,13 @@
                 if (UserService.createUser(newUser)) {
                     $location.url("/profile/" + UserService.findUserByUsernameAndPassword(username, password)._id);
                 }
-                model.error = "User could not be created";
+                else {
+                    vm.error = "Username already taken";
+                }
             }
-            model.error = "Passwords do not match";
+            else {
+                vm.error = "Passwords do not match";
+            }
         }
 
     }
