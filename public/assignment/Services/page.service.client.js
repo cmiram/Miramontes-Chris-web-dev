@@ -20,12 +20,10 @@
         return api;
 
         function createPage(websiteId, page) {
-            var newPage = {
-                _id: (new Date()).getDate().toString(),
-                name: page,
-                websiteId: websiteId
-            }
-            pages.push(newPage);
+            page._id = (new Date()).getDate().toString();
+            page.websiteId = websiteId;
+            pages.push(page);
+            return page;
         }
 
         function findPageByWebsiteId(websiteId) {
