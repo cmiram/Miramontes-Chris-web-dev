@@ -5,7 +5,7 @@
                 Websites
             </a>
             <p class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}/website/websiteNew" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/new" class="navbar-link">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </p>
@@ -21,6 +21,7 @@
                 <span class="glyphicon glyphicon-cog"></span>
                 <span class="glyphicon glyphicon-play"></span>
             </a>
+            <p ng-if="website.description">{{website.description}}</p>
         </li>
     </ul>
 </div>

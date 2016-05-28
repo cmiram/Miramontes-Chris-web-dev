@@ -21,13 +21,11 @@
         };
         return api;
 
-        function createWebsite(userId, website) {
-            var newWebsite = {
-                _id: Date.prototype.getDate().valueOf(),
-                name: website,
-                developer: userId
-            };
-            websites.push(newWebsite);
+        function createWebsite(website, developerId) {
+            website._id = (new Date()).getTime();
+            website.developerId = developerId;
+            websites.push(website);
+            return website;
         }
 
         function findWebsitesByUser(userId) {
