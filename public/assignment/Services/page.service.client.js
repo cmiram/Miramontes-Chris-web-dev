@@ -21,7 +21,7 @@
 
         function createPage(websiteId, page) {
             var newPage = {
-                _id: Date.prototype.getDate().valueOf(),
+                _id: (new Date()).getDate().toString(),
                 name: page,
                 websiteId: websiteId
             }
