@@ -13,7 +13,6 @@
             vm.websiteId = $routeParams.websiteId;
             vm.pageId = $routeParams.pid;
             vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
-            console.log(vm.widgets);
         }
         init();
 
