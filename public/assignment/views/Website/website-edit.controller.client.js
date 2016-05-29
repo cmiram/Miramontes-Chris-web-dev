@@ -18,7 +18,7 @@
         function updateWebsite(website) {
             var result = WebsiteService.updateWebsite(vm.websiteId, website);
             if (result) {
-                $location.url("user/" + vm.userId + "/website");
+                $location.url("User/" + vm.userId + "/Website");
             }
             else {
                 vm.error = "Unable to update";
@@ -28,10 +28,10 @@
         function deleteWebsite() {
             var result = WebsiteService.deleteWebsite(vm.websiteId);
             if (result) {
-                $location.url("user/" + vm.userId + "/website");
+                $location.url("User/" + vm.userId + "/Website");
             }
             else {
-                vm.error = "Unable to delete website";
+                vm.error = "Unable to delete Website";
             }
         }
     }

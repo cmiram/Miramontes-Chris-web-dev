@@ -18,15 +18,15 @@
                 var result = WebsiteService.createWebsite(website, vm.userId);
 
                 if(result) {
-                    $location.url("/user/" + vm.userId + "/website");
+                    $location.url("/User/" + vm.userId + "/Website");
                 }
                 else {
-                    vm.error = "Unable to create new website";
+                    vm.error = "Unable to create new Website";
                     return;
                 }
             }
             else {
-                vm.error = "New website must have name";
+                vm.error = "New Website must have name";
                 return;
             }
         }

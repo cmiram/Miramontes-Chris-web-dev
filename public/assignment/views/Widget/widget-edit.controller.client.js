@@ -22,10 +22,10 @@
             var result = WidgetService.updateWidget(vm.widgetId, widget);
 
             if(result) {
-                $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                $location.url("User/" + vm.userId + "/Website/" + vm.websiteId + "/page/" + vm.pageId + "/Widget");
             }
             else {
-                vm.error = "Unable to update widget";
+                vm.error = "Unable to update Widget";
             }
         }
         
@@ -33,10 +33,10 @@
             var result = WidgetService.deleteWidget(vm.widgetId);
             
             if(result) {
-                $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                $location.url("User/" + vm.userId + "/Website/" + vm.websiteId + "/page/" + vm.pageId + "/Widget");
             }
             else {
-                vm.error = "Unable to delete widget";
+                vm.error = "Unable to delete Widget";
             }
         }
     }

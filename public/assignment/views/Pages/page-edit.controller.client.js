@@ -20,7 +20,7 @@
             if(page.name) {
                 var result = PageService.updatePage(vm.pageId, page);
                 if(result) {
-                    $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                    $location.url("User/" + vm.userId + "/Website/" + vm.websiteId + "/page");
                 }
                 else {
                     page.error = "Unable to update page";
@@ -34,7 +34,7 @@
         function deletePage() {
             var result = PageService.deletePage(vm.pageId);
             if(result) {
-                $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                $location.url("User/" + vm.userId + "/Website/" + vm.websiteId + "/page");
             }
             else {
                 vm.error = "Unable to delete page";
