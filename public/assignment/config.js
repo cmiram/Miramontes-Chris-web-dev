@@ -21,17 +21,17 @@
                 controllerAs: "model"
             })
             .when("/user/:userId/website", {
-                templateUrl: "views/Website/Website-list.view.client.html",
+                templateUrl: "views/Website/website-list.view.client.html",
                 controller: "WebsiteListController",
                 controllerAs: "model"
             })
             .when("/user/:userId/website/new", {
-                templateUrl: "views/Website/Website-new.view.client.html",
+                templateUrl: "views/Website/website-new.view.client.html",
                 controller: "NewWebsiteController",
                 controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId", {
-                templateUrl: "views/Website/Website-edit.view.client.html",
+                templateUrl: "views/Website/website-edit.view.client.html",
                 controller: "EditWebsiteController",
                 controllerAs: "model"
             })
@@ -51,17 +51,17 @@
                 controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page/:pid/widget", {
-                templateUrl: "views/Widget/Widget-list.view.client.html",
+                templateUrl: "views/Widget/widget-list.view.client.html",
                 controller: "WidgetListController",
                 controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page/:pid/widget/new", {
-                templateUrl: "views/Widget/Widget-new.view.client.html",
+                templateUrl: "views/Widget/widget-new.view.client.html",
                 controller: "NewWidgetController",
                 controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page/:pid/widget/:wgid", {
-                templateUrl: "views/Widget/Widget-edit.view.client.html",
+                templateUrl: "views/Widget/widget-edit.view.client.html",
                 controller: "EditWidgetController",
                 controllerAs: "model"
             })
