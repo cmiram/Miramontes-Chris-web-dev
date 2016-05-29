@@ -15,7 +15,7 @@
                 $location.url("/profile/" + id);
             }
             else {
-                vm.error = "User not found";
+                vm.error = "user not found";
             }
         }
     }

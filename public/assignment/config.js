@@ -6,7 +6,7 @@
     function Config($routeProvider) {
         $routeProvider
             .when("/login", {
-                templateUrl: "views/User/login.view.client.html",
+                templateUrl: "views/user/login.view.client.html",
                 controller: "LoginController",
                 controllerAs: "model"
             })
@@ -36,27 +36,27 @@
                 controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page", {
-                templateUrl: "views/Pages/page-list.view.client.html",
+                templateUrl: "views/pages/page-list.view.client.html",
                 controller: "PageListController",
                 controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page/new", {
-                templateUrl: "views/Pages/page-new.view.client.html",
+                templateUrl: "views/pages/page-new.view.client.html",
                 controller: "NewPageController",
                 controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page/:pid", {
-                templateUrl: "views/Pages/page-edit.view.client.html",
+                templateUrl: "views/pages/page-edit.view.client.html",
                 controller: "EditPageController",
                 controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page/:pid/widget", {
-                templateUrl: "views/Widget/widget-list.view.client.html",
+                templateUrl: "views/widget/widget-list.view.client.html",
                 controller: "WidgetListController",
                 controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page/:pid/widget/new", {
-                templateUrl: "views/Widget/widget-new.view.client.html",
+                templateUrl: "views/widget/widget-new.view.client.html",
                 controller: "NewWidgetController",
                 controllerAs: "model"
             })

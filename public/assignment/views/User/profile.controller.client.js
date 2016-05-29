@@ -17,10 +17,10 @@
             var result = UserService.updateUser(vm.userId, user);
 
             if(result) {
-                vm.success = "User successfully updated";
+                vm.success = "user successfully updated";
             }
             else {
-                vm.error = "User not found";
+                vm.error = "user not found";
             }
         }
     }
