@@ -2,15 +2,15 @@
     <div class="container-fluid">
         <div class="navbar-head">
             <p class="navbar-text pull-left">
-                <a href="../Website/website-list.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="">
                 Widgets
             </a>
             <p class="navbar-text pull-right">
-                <a href="widget-new.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </p>
@@ -19,53 +19,55 @@
 </nav>
 
 <div class="container">
-    <div class="cm-widget">
-        <div class="cm-widget-toolbar">
-            <a href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <a class="glyphicon glyphicon-align-justify"></a>
-        </div>
-        <h1>LIGO</h1>
-    </div>
 
-    <div class="cm-widget">
-        <div class="cm-widget-toolbar">
-            <a href="widget-heading.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <a class="glyphicon glyphicon-align-justify"></a>
-        </div>
-        <h4>Gravitational Waves Detected 100 Years After Einstein's Prediction</h4>
-    </div>
-
-    <div class="cm-widget">
-        <div class="cm-widget-toolbar">
-            <a href="widget-image.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <a class="glyphicon glyphicon-align-justify"></a>
-        </div>
-        <img width="100%" src="https://www.ligo.caltech.edu/system/news_items/images/18/page/ligo20160211_Tn.jpg?1456255499">
-    </div>
-
-    <div class="cm-widget">
-        <div class="cm-widget-toolbar">
-            <a class="glyphicon glyphicon-cog"></a>
-            <a class="glyphicon glyphicon-align-justify"></a>
-        </div>
-        <p class="first-text">For the first time, scientists have observed ripples in the fabric of spacetime called gravitational waves, arriving at the earth from a cataclysmic event in the distant universe. This confirms a major prediction of Albert Einstein’s 1915 general theory of relativity and opens an unprecedented new window onto the cosmos.</p>
-    </div>
-
-    <div class="cm-widget">
-        <div class="cm-widget-toolbar">
-            <a href="widget-youtube.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <a class="glyphicon glyphicon-align-justify"></a>
-        </div>
-        <div class="cm-youtube-element">
-            <iframe src="https://www.youtube.com/embed/B4XzLDM3Py8" frameborder="0" allowfullscreen></iframe>
+    <div ng-repeat="widget in model.widgets">
+        <div class="cm-widget">
+            <div class="cm-widget-toolbar">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                    <span class="glyphicon glyphicon-cog"></span>
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </a>
+            </div>
+            <div ng-switch="widget.widgetType">
+                <div ng-switch-when="HEADER">
+                    <div ng-switch="widget.size">
+                        <div ng-switch-when="1">
+                            <h1>{{widget.text}}</h1>
+                        </div>
+                        <div ng-switch-when="2">
+                            <h1>{{widget.text}}</h1>
+                        </div>
+                        <div ng-switch-when="3">
+                            <h1>{{widget.text}}</h1>
+                        </div>
+                        <div ng-switch-when="4">
+                            <h1>{{widget.text}}</h1>
+                        </div>
+                        <div ng-switch-when="5">
+                            <h1>{{widget.text}}</h1>
+                        </div>
+                        <div ng-switch-when="6">
+                            <h1>{{widget.text}}</h1>
+                        </div>
+                    </div>
+                </div>
+                <div ng-switch-when="IMAGE">
+                    <img ng-src="{{widget.url}}"
+                         width="{{widget.width}}">
+                </div>
+                <div ng-switch-when="YOUTUBE">
+                    <div cm-youtube-element>
+                        <iframe ng-src="{{model.getYoutubeUrl(widget)}}"
+                                frameborder="0"
+                                width="{{widget.width}}"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                <div ng-switch-when="HTML">
+                    <div ng-bind-html="model.getHtml(widget)"></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -75,17 +77,17 @@
     <div class="container-fluid">
         <div class="navbar-head">
             <p class="navbar-text pull-left">
-                <a href="#" class="navbar-link">
+                <a href="" class="navbar-link">
                     <span class="glyphicon glyphicon-play"></span>
                 </a>
             </p>
             <p class="navbar-text pull-left">
-                <a href="#" class="navbar-link">
+                <a href="" class="navbar-link">
                     <span class="glyphicon glyphicon-eye-open"></span>
                 </a>
             </p>
             <p class="navbar-text pull-right">
-                <a href="../User/profile.view.client.html" class="navbar-link">
+                <a href="#/profile/{{model.userId}}" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>
