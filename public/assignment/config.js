@@ -20,47 +20,47 @@
                 controller: "ProfileController",
                 controllerAs: "model"
             })
-            .when("/User/:userId/Website", {
+            .when("/user/:userId/website", {
                 templateUrl: "views/Website/Website-list.view.client.html",
                 controller: "WebsiteListController",
                 controllerAs: "model"
             })
-            .when("/User/:userId/Website/new", {
+            .when("/user/:userId/website/new", {
                 templateUrl: "views/Website/Website-new.view.client.html",
                 controller: "NewWebsiteController",
                 controllerAs: "model"
             })
-            .when("/User/:userId/Website/:websiteId", {
+            .when("/user/:userId/website/:websiteId", {
                 templateUrl: "views/Website/Website-edit.view.client.html",
                 controller: "EditWebsiteController",
                 controllerAs: "model"
             })
-            .when("/User/:userId/Website/:websiteId/page", {
+            .when("/user/:userId/website/:websiteId/page", {
                 templateUrl: "views/Pages/page-list.view.client.html",
                 controller: "PageListController",
                 controllerAs: "model"
             })
-            .when("/User/:userId/Website/:websiteId/page/new", {
+            .when("/user/:userId/website/:websiteId/page/new", {
                 templateUrl: "views/Pages/page-new.view.client.html",
                 controller: "NewPageController",
                 controllerAs: "model"
             })
-            .when("/User/:userId/Website/:websiteId/page/:pid", {
+            .when("/user/:userId/website/:websiteId/page/:pid", {
                 templateUrl: "views/Pages/page-edit.view.client.html",
                 controller: "EditPageController",
                 controllerAs: "model"
             })
-            .when("/User/:userId/Website/:websiteId/page/:pid/Widget", {
+            .when("/user/:userId/website/:websiteId/page/:pid/widget", {
                 templateUrl: "views/Widget/Widget-list.view.client.html",
                 controller: "WidgetListController",
                 controllerAs: "model"
             })
-            .when("/User/:userId/Website/:websiteId/page/:pid/Widget/new", {
+            .when("/user/:userId/website/:websiteId/page/:pid/widget/new", {
                 templateUrl: "views/Widget/Widget-new.view.client.html",
                 controller: "NewWidgetController",
                 controllerAs: "model"
             })
-            .when("/User/:userId/Website/:websiteId/page/:pid/Widget/:wgid", {
+            .when("/user/:userId/website/:websiteId/page/:pid/widget/:wgid", {
                 templateUrl: "views/Widget/Widget-edit.view.client.html",
                 controller: "EditWidgetController",
                 controllerAs: "model"
