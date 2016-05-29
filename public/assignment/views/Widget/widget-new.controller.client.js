@@ -21,7 +21,7 @@
             }
 
             widget = WidgetService.createWidget(widget);
-
+            console.log(widget);
             if(widget) {
                 $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + widget._id);
             }
