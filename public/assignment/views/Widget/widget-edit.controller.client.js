@@ -18,13 +18,19 @@
         init();
         
         function updateWidget(widget) {
-            var result = WidgetService.updateWidget(vm.widgetId, widget);
-
-            if(result) {
-                $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+            var missingFields =  widgetIsMissingNecessaryFields(widget);
+            if(missingFields) {
+                vm.error = missingFields;
             }
             else {
-                vm.error = "Unable to update Widget";
+                var result = WidgetService.updateWidget(vm.widgetId, widget);
+
+                if(result) {
+                    $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                }
+                else {
+                    vm.error = "Unable to update Widget";
+                }
             }
         }
         
@@ -36,6 +42,31 @@
             }
             else {
                 vm.error = "Unable to delete Widget";
+            }
+        }
+
+        function widgetIsMissingNecessaryFields(widget) {
+            switch(widget.widgetType) {
+                case "HEADER":
+                    if(!widget.text || !widget.size) {
+                        return "Text and Size are required fields";
+                    }
+                    return null;
+                case "HTML":
+                    if(!widget.text) {
+                        return "Text is a required field";
+                    }
+                    return null;
+                case "IMAGE":
+                    if(!widget.url) {
+                        return "URL is a required field";
+                    }
+                    return null;
+                case "YOUTUBE":
+                    if(!widget.url) {
+                        return "URL is a required field";
+                    }
+                    return null;
             }
         }
     }
