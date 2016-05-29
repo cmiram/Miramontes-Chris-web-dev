@@ -14,7 +14,6 @@
             vm.pageId = $routeParams.pid;
             vm.widgetId = $routeParams.wgid;
             vm.widget = JSON.parse(JSON.stringify(WidgetService.findWidgetsById(vm.widgetId)));
-            console.log(vm.widget);
         }
         init();
         
