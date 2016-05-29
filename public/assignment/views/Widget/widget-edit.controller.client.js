@@ -7,6 +7,7 @@
         var vm = this;
         vm.updateWidget = updateWidget;
         vm.deleteWidget = deleteWidget;
+        vm.widgetHasRequiredFieldsSaved = widgetHasRequiredFieldsSaved;
 
         function init() {
             vm.userId = $routeParams.userId;
@@ -42,6 +43,17 @@
             }
             else {
                 vm.error = "Unable to delete Widget";
+            }
+        }
+
+        function widgetHasRequiredFieldsSaved() {
+            var widget = WidgetService.findWidgetsById(vm.widgetId);
+            var result = widgetIsMissingNecessaryFields(widget);
+            if(result) {
+                vm.error = result + ". Must save or empty fields before navigating away";
+            }
+            else {
+                $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
             }
         }
 
