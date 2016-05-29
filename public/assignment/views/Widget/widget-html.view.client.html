@@ -41,14 +41,6 @@
                    id="text"
                    placeholder="My Heading Text"/>
         </div>
-        <div class="form-group">
-            <label for="size-select">Size</label>
-            <select ng-model="model.widget.size"
-                    class="form-control"
-                    id="size-select"
-                    ng-options="sizeSelect for sizeSelect in [1,2,3,4,5,6]">
-            </select>
-        </div>
     </form>
     <a class="btn btn-danger btn-block"
        ng-click="model.deleteWidget()">Delete</a>

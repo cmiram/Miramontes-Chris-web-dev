@@ -25,9 +25,10 @@
         };
         return api;
 
-        function createWidget(pageId, widget) {
-            widget._id = Date.now().valueOf();
+        function createWidget(widget) {
+            widget._id = (new Date()).getDate().toString();
             widgets.push(widget);
+            return widget;
         }
 
         function findWidgetsByPageId(pageId) {
@@ -52,7 +53,7 @@
         function updateWidget(widgetId, widget) {
             for(var i in widgets) {
                 if(widgets[i]._id === widgetId) {
-                    widgets.remove(i);
+                    widgets.splice(i, 1);
                     widget._id = widgetId;
                     widgets.push(widget);
                     return true;
@@ -64,7 +65,7 @@
         function deleteWidget(widgetId) {
             for(var i in widgets) {
                 if(widgets[i]._id === widgetId) {
-                    widgets.remove(i);
+                    widgets.splice(i, 1);
                     return true;
                 }
             }

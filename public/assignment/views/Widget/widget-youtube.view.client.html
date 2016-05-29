@@ -2,15 +2,15 @@
     <div class="container-fluid">
         <div class="navbar-head">
             <p class="navbar-text pull-left">
-                <a href="widget-list.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
             <a class="navbar-brand" href="#">
-                Widget Edit
+                Edit YouTube Widget
             </a>
             <p class="navbar-text pull-right">
-                <a href="widget-list.view.client.html" class="navbar-link">
+                <a ng-click="model.updateWidget(model.widget)" class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
@@ -19,33 +19,54 @@
 </nav>
 
 <div class="container">
+
+    <div ng-if="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
     <form>
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="My Widget"/>
+            <input ng-model="model.widget.name"
+                   type="text"
+                   class="form-control"
+                   id="name"
+                   placeholder="My Widget"/>
         </div>
         <div class="form-group">
             <label for="text">Text</label>
-            <input type="text" class="form-control" id="text" placeholder="My YouTube Text"/>
+            <input ng-model="model.widget.text"
+                   type="text"
+                   class="form-control"
+                   id="text"
+                   placeholder="My YouTube Text"/>
         </div>
         <div class="form-group">
             <label for="url">URL</label>
-            <input type="url" class="form-control" id="url" placeholder="https://youtu.be/abcdefg">
+            <input ng-model="model.widget.url"
+                   type="url"
+                   class="form-control"
+                   id="url"
+                   placeholder="https://youtu.be/abcdefg">
         </div>
         <div class="form-group">
             <label for="width">Width</label>
-            <input type="text" class="form-control" id="width" placeholder="100%"/>
+            <input ng-model="model.widget.width"
+                   type="text"
+                   class="form-control"
+                   id="width"
+                   placeholder="100%"/>
         </div>
     </form>
     <a class="btn btn-danger btn-block"
-       href="widget-list.view.client.html">Delete</a>
+       ng-click="deleteWidget()">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-head">
             <p class="navbar-text pull-right">
-                <a href="../User/profile.view.client.html" class="navbar-link">
+                <a href="#/profile/{{model.userId}}" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>
