@@ -53,9 +53,7 @@
         function updateWidget(widgetId, widget) {
             for(var i in widgets) {
                 if(widgets[i]._id === widgetId) {
-                    widgets.splice(i, 1);
-                    widget._id = widgetId;
-                    widgets.push(widget);
+                    widgets[i] = widget;
                     return true;
                 }
             }
