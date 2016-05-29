@@ -22,7 +22,7 @@
             var result = WidgetService.updateWidget(vm.widgetId, widget);
 
             if(result) {
-                $location.url("User/" + vm.userId + "/Website/" + vm.websiteId + "/page/" + vm.pageId + "/Widget");
+                $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
             }
             else {
                 vm.error = "Unable to update Widget";
@@ -33,7 +33,7 @@
             var result = WidgetService.deleteWidget(vm.widgetId);
             
             if(result) {
-                $location.url("User/" + vm.userId + "/Website/" + vm.websiteId + "/page/" + vm.pageId + "/Widget");
+                $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
             }
             else {
                 vm.error = "Unable to delete Widget";
