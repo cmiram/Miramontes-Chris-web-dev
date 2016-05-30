@@ -23,7 +23,7 @@
             widget = WidgetService.createWidget(widget);
             console.log(widget);
             if(widget) {
-                $location.url("general/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + widget._id);
+                $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + widget._id);
             }
             else {
                 vm.error = "Unable to create Widget";
