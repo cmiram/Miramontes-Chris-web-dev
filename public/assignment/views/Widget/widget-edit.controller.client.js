@@ -27,7 +27,7 @@
                 var result = WidgetService.updateWidget(vm.widgetId, widget);
 
                 if(result) {
-                    $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    $location.url("general/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
                 }
                 else {
                     vm.error = "Unable to update Widget";
@@ -39,7 +39,7 @@
             var result = WidgetService.deleteWidget(vm.widgetId);
             
             if(result) {
-                $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                $location.url("general/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
             }
             else {
                 vm.error = "Unable to delete Widget";
@@ -53,7 +53,7 @@
                 vm.error = result + ". Must save or empty fields before navigating away";
             }
             else {
-                $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                $location.url("general/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
             }
         }
 
