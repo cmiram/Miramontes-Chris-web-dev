@@ -3,7 +3,7 @@
         .module("TVTracker")
         .controller("HomeController", HomeController);
 
-    function LoginController($location, UserService) {
+    function HomeController($location, UserService) {
         var vm = this;
     }
 })();

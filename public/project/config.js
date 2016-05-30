@@ -20,9 +20,9 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
-            .when("/general/home/:uid", {
+            .when("/user/home/:uid", {
                 templateUrl: "views/user/user-home.view.client.html",
-                controller: "UserController",
+                controller: "UserHomeController",
                 controllerAs: "model"
             })
             .otherwise({
