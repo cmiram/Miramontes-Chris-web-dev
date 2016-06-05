@@ -59,7 +59,6 @@ module.exports = function(app) {
 
         for(var i in widgets) {
             if(widgets[i]._id === id) {
-                newWidget._id = id;
                 widgets[i] = newWidget;
                 res.send(newWidget);
                 return;

@@ -66,3 +66,16 @@ p.navbar-text.pull-left {
 .input-group {
     padding-bottom: 15px;
 }
+
+.flicker-body {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.photo-grid {
+
+}
+
+.flickrPhoto {
+    width: 100%
+}
