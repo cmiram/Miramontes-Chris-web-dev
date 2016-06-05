@@ -6,7 +6,7 @@
     function NewPageController($location, $routeParams, PageService) {
         var vm = this;
         vm.createNewPage = createNewPage;
-        
+
         function init() {
             vm.userId = $routeParams.userId;
             vm.websiteId = $routeParams.websiteId;
@@ -15,15 +15,14 @@
 
         function createNewPage(page) {
             if(page && page.name) {
-                var result = PageService.createPage(vm.websiteId, page);
-
-                if(result) {
-                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
-                }
-                else {
-                    vm.error = "Unable to create new page";
-                    return;
-                }
+                PageService
+                    .createPage(vm.websiteId, page)
+                    .then(function(response) {
+                            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                        },
+                        function(error) {
+                            vm.error = error.data;
+                        });
             }
             else {
                 vm.error = "New page must have name";
@@ -31,5 +30,5 @@
             }
         }
     }
-    
+
 })();

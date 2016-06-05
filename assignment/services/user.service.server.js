@@ -9,7 +9,7 @@ module.exports = function(app) {
     app.post("/api/user", createUser);
     app.get("/api/user", getUsers);
     app.get("/api/user/:userId", findUserById);
-    app.put("api/user/:userId", updateUser);
+    app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
 
     function createUser(req, res) {
@@ -58,7 +58,7 @@ module.exports = function(app) {
                 return;
             }
         }
-        res.send({});
+        res.send(403);
     }
 
     function findUserById(req, res) {
@@ -79,7 +79,7 @@ module.exports = function(app) {
 
         for(var u in users) {
             if(users[u]._id === id) {
-                users[u].firstName = newUser.firstname;
+                users[u].firstName = newUser.firstName;
                 users[u].lastName = newUser.lastName;
                 users[u].email = newUser.email;
                 res.send(200);

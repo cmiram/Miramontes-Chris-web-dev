@@ -12,34 +12,42 @@
             vm.userId = $routeParams.userId;
             vm.websiteId = $routeParams.websiteId;
             vm.pageId = $routeParams.pid;
-            vm.page = JSON.parse(JSON.stringify(PageService.findPageById(vm.pageId)));
+            PageService
+                .findPageById(vm.pageId)
+                .then(function(response) {
+                        vm.page = response.data;
+                    },
+                    function(error){
+                        vm.error = error.data;
+                    });
         }
         init();
 
         function updatePage(page) {
             if(page.name) {
-                var result = PageService.updatePage(vm.pageId, page);
-                if(result) {
-                    $location.url("User/" + vm.userId + "/Website/" + vm.websiteId + "/page");
-                }
-                else {
-                    page.error = "Unable to update page";
-                }
+                PageService
+                    .updatePage(vm.pageId, page)
+                    .then(function(response){
+                            $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                        },
+                        function(error) {
+                            vm.error = error.data;
+                        });
             }
             else {
                 page.error = "Page must have a name";
             }
         }
-        
+
         function deletePage() {
-            var result = PageService.deletePage(vm.pageId);
-            if(result) {
-                $location.url("User/" + vm.userId + "/Website/" + vm.websiteId + "/page");
-            }
-            else {
-                vm.error = "Unable to delete page";
-            }
+            PageService
+                .deletePage(vm.pageId)
+                .then(function(response) {
+                        $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    });
         }
-        
     }
 })();

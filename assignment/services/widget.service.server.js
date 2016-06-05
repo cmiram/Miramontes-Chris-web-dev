@@ -20,9 +20,7 @@ module.exports = function(app) {
 
     function createWidget(req,res) {
         var newWidget = req.body;
-        var pageId = req.params.pageId;
         newWidget._id = (new Date()).getTime().toString();
-        newWidget.pageId = pageId;
         widgets.push(newWidget);
         res.json(newWidget);
     }
@@ -31,9 +29,9 @@ module.exports = function(app) {
         var id = req.params.pageId;
         var result = [];
 
-        for(var i in pages) {
-            if(pages[i].pageId = id) {
-                result.push(pages[i]);
+        for(var i in widgets) {
+            if(widgets[i].pageId = id) {
+                result.push(widgets[i]);
             }
         }
         res.json(result);

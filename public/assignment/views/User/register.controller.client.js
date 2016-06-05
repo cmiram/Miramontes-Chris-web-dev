@@ -14,12 +14,15 @@
                     username: username,
                     password: password
                 }
-                if (UserService.createUser(newUser)) {
-                    $location.url("/profile/" + UserService.findUserByUsernameAndPassword(username, password)._id);
-                }
-                else {
-                    vm.error = "Username already taken";
-                }
+
+                UserService
+                    .createUser(newUser)
+                    .then(function(response) {
+                        $location.url("/profile/" + UserService.findUserByUsernameAndPassword(username, password)._id);
+                    },
+                        function(error) {
+                            vm.error = error.data;
+                        });
             }
             else {
                 vm.error = "Passwords do not match";

@@ -14,47 +14,62 @@
             vm.websiteId = $routeParams.websiteId;
             vm.pageId = $routeParams.pid;
             vm.widgetId = $routeParams.wgid;
-            vm.widget = JSON.parse(JSON.stringify(WidgetService.findWidgetsById(vm.widgetId)));
+            WidgetService
+                .findWidgetsById(vm.widgetId)
+                .then(function(response) {
+                        vm.widget = response.data;
+                    },
+                    function(error){
+                        vm.error = error.data;
+                    });
         }
         init();
-        
+
         function updateWidget(widget) {
             var missingFields =  widgetIsMissingNecessaryFields(widget);
             if(missingFields) {
                 vm.error = missingFields;
-            }
+            }   
             else {
-                var result = WidgetService.updateWidget(vm.widgetId, widget);
-
-                if(result) {
-                    $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
-                }
-                else {
-                    vm.error = "Unable to update Widget";
-                }
+                WidgetService
+                    .updateWidget(vm.widgetId, widget)
+                    .then(function(response) {
+                            $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                        },
+                        function(error) {
+                            vm.error = error.data;
+                        });
             }
         }
-        
+
         function deleteWidget() {
-            var result = WidgetService.deleteWidget(vm.widgetId);
-            
-            if(result) {
-                $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
-            }
-            else {
-                vm.error = "Unable to delete Widget";
-            }
+            WidgetService
+                .deleteWidget(vm.widgetId)
+                .then(function(response) {
+                        $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    });
         }
 
         function widgetHasRequiredFieldsSaved() {
-            var widget = WidgetService.findWidgetsById(vm.widgetId);
-            var result = widgetIsMissingNecessaryFields(widget);
-            if(result) {
-                vm.error = result + ". Must save or empty fields before navigating away";
-            }
-            else {
-                $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
-            }
+            WidgetService
+                .findWidgetsById(vm.widgetId)
+                .then(function(response) {
+                        var widget = response.data;
+                        var result = widgetIsMissingNecessaryFields(widget);
+                        if(result) {
+                            vm.error = result + ". Must save or empty fields before navigating away";
+                        }
+                        else {
+                            $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                        }
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    });
+
         }
 
         function widgetIsMissingNecessaryFields(widget) {

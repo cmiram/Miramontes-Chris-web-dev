@@ -18,16 +18,16 @@
             var widget = {
                 widgetType: type,
                 pageId: vm.pageId
-            }
+            };
 
-            widget = WidgetService.createWidget(widget);
-            console.log(widget);
-            if(widget) {
-                $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + widget._id);
-            }
-            else {
-                vm.error = "Unable to create Widget";
-            }
+            WidgetService
+                .createWidget(vm.pageId, widget)
+                .then(function(response) {
+                        $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + response.data._id);
+                    },
+                    function(error){
+                        vm.error = error.data;
+                    });
         }
     }
 })();

@@ -20,7 +20,7 @@
                         }
                     },
                     function(error) {
-                        vm.error = "User not found";
+                        vm.error = "Username or password not correct";
                     }
                 );
         }
