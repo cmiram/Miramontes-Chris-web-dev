@@ -40,5 +40,10 @@
         function getHtml(widget) {
             return $sce.trustAsHtml(widget.text);
         }
+
+        $(".widget-container")
+            .sortable({
+                axis: "y"
+            })
     }
 })();
