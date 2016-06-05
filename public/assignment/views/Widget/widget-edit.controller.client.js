@@ -14,6 +14,8 @@
             vm.websiteId = $routeParams.websiteId;
             vm.pageId = $routeParams.pid;
             vm.widgetId = $routeParams.wgid;
+            vm.uploadUrl = "/api/upload/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + vm.widgetId;
+            
             WidgetService
                 .findWidgetsById(vm.widgetId)
                 .then(function(response) {
