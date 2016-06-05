@@ -7,8 +7,7 @@ module.exports = function(app) {
     ];
 
     app.post("/api/user", createUser);
-    app.get("/api/user?username=username", findUserByUsername);
-    app.get("/api/user?username=username&password=password", findUserByCredentials);
+    app.get("/api/user", getUsers);
     app.get("/api/user/:userId", findUserById);
     app.put("api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
@@ -26,6 +25,20 @@ module.exports = function(app) {
         newUser._id = (new Date()).getTime().toString();
         users.push(newUser);
         res.json(newUser);
+    }
+
+    function getUsers(req, res) {
+        var username = req.query["username"];
+        var password = req.query["password"];
+        if(username && password) {
+            findUserByCredentials(username, password, res);
+        }
+        else if(username) {
+            findUserByUsername(username, res);
+        }
+        else {
+            res.send(users);
+        }
     }
 
     function findUserByUsername(username, res) {
