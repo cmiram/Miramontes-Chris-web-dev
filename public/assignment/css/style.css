@@ -62,3 +62,7 @@ p.navbar-text.pull-left {
     cursor: pointer;
     text-decoration: none;
 }
+
+.input-group {
+    padding-bottom: 15px;
+}

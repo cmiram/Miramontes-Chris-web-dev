@@ -57,7 +57,22 @@
                    id="width"
                    placeholder="100%"/>
         </div>
-        </form>
+    </form>
+
+    <div class="input-group">
+        <input ng-model="searchText"
+               type="text"
+               class="form-control"
+               placeholder="Flickr Search">
+        <span class="input-group-btn">
+            <a ng-click="model.searchPhotos(searchText)"
+                class="btn btn-default"
+                type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+    </span>
+    </div>
+
     <form action={{model.uploadUrl}} method="post" enctype="multipart/form-data">
         <input  name="myFile"   type="file" class="form-control"/>
         <input  name="width"    value="{{model.widget.width}}" style="display: none"/>

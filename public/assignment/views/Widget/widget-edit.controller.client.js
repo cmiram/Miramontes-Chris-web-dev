@@ -8,6 +8,7 @@
         vm.updateWidget = updateWidget;
         vm.deleteWidget = deleteWidget;
         vm.widgetHasRequiredFieldsSaved = widgetHasRequiredFieldsSaved;
+        vm.searchPhotos = searchPhotos;
 
         function init() {
             vm.userId = $routeParams.userId;
@@ -97,6 +98,10 @@
                     }
                     return null;
             }
+        }
+        
+        function searchPhotos(searchText) {
+            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + vm.widgetId + "/flickr/" + searchText);
         }
     }
 })();
