@@ -39,9 +39,11 @@ module.exports = function(userModel) {
     function updateWebsite(websiteId, website) {
         return Website.findOneAndUpdate(
             {_id: websiteId},
-            {
-                name: website.name,
-                description: website.description
+            {$set: 
+                {
+                    name: website.name,
+                    description: website.description
+                }
             }
         );
     }

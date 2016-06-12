@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 
 module.exports = function(websiteModel) {
 
-    var PageSchema = require("./website.schema.server")();
+    var PageSchema = require("./page.schema.server")();
     var Page = mongoose.model("Page", PageSchema);
 
     var api = {
@@ -12,7 +12,8 @@ module.exports = function(websiteModel) {
         updatePage: updatePage,
         deletePage: deletePage,
         pushWidget: pushWidget,
-        pullWidget: pullWidget
+        pullWidget: pullWidget,
+        reorderWidgets: reorderWidgets
     }
     return api;
 
@@ -38,10 +39,12 @@ module.exports = function(websiteModel) {
     function updatePage(pageId, page) {
         return Page.update(
             {_id: pageId},
-            {
-                name: page.name,
-                title: page.title,
-                description: page.description
+            {$set: 
+                {
+                    name: page.name,
+                    title: page.title,
+                    description: page.description
+                }
             }
         );
     }
@@ -78,5 +81,12 @@ module.exports = function(websiteModel) {
                 }
             }
         );
+    }
+
+    function reorderWidgets(pageId, start, end) {
+        var page = Page.findOne({_id: pageId});
+        var widgets = page.widgets;
+        widgets.splice(end, 0, widgets.splice(start, 1));
+        return page.save();
     }
 }

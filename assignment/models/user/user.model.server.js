@@ -33,14 +33,18 @@ module.exports = function() {
     }
 
     function updateUser(userId, newUser) {
-        var query = {_id: userId};
-        return User.findOneAndUpdate(query, {
-            firstName: newUser.firstName,
-            lastName: newUser.lastName,
-            email: newUser.email,
-            phone: newUser.phone,
-            websites: newUser.websites
-        });
+        return User.update(
+            {_id: userId},
+            { $set:
+                {
+                    firstName: newUser.firstName,
+                    lastName: newUser.lastName,
+                    email: newUser.email,
+                    phone: newUser.phone,
+                    websites: newUser.websites
+                }
+            }
+        );
     }
 
     function deleteUser(userId) {
