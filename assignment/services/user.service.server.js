@@ -1,10 +1,4 @@
-module.exports = function(app) {
-    var users = [
-        {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-        {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-        {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-        {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-    ];
+module.exports = function(app, models) {
 
     app.post("/api/user", createUser);
     app.get("/api/user", getUsers);
@@ -12,93 +6,134 @@ module.exports = function(app) {
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
 
+    var userModel = models.userModel;
+
     function createUser(req, res) {
         var newUser = req.body;
 
-        for(var i in users) {
-            if(users[i].username === newUser.username) {
-                res.status(400).send("Username "  + newUser.username + " is already being used");
-                return;
-            }
+        if(!newUser.username) {
+            res.status(400).json({message: "Username is required"});
+            return;
         }
 
-        newUser._id = (new Date()).getTime().toString();
-        users.push(newUser);
-        res.json(newUser);
+        if(!newUser.password) {
+            res.status(400).json({message: "Password is required"});
+            return;
+        }
+
+        userModel
+            .createUser(newUser)
+            .then(createSuccess, createError);
+
+        function createSuccess(user) {
+            res.json(user);
+        }
+
+        function createError(error) {
+            res.status(400).json(error);
+        }
     }
 
     function getUsers(req, res) {
         var username = req.query["username"];
         var password = req.query["password"];
         if(username && password) {
-            findUserByCredentials(username, password, res);
+            userModel
+                .findUserByCredentials(username, password)
+                .then(foundUser, foundError);
         }
         else if(username) {
-            findUserByUsername(username, res);
+            userModel
+                .findUserByUsername(username)
+                .then(foundUser, foundError);
         }
         else {
-            res.send(users);
+            res.status(400).json({message: "Must provide username or username and password"});
+        }
+
+        function foundUser(user) {
+            res.json(user);
+        }
+
+        function foundError(error) {
+            res.status(400).json(error);
         }
     }
 
     function findUserByUsername(username, res) {
-        for(var u in users) {
-            if(users[u].username === username) {
-                res.send(users[u]);
-                return;
-            }
+        userModel
+            .findUserByUsername(username)
+            .then(foundUser, foundError);
+
+        function foundUser(user) {
+            res.json(user);
         }
-        res.send(403);
+
+        function foundError(error) {
+            res.status(400).json(error);
+        }
     }
 
     function findUserByCredentials(username, password, res) {
-        for(var u in users) {
-            if(users[u].username === username && users[u].password === password) {
-                res.send(users[u]);
-                return;
-            }
+        userModel
+            .findUserByCredentials(username, password)
+            .then(foundUser, foundError);
+
+        function foundUser(user) {
+            res.json(user);
         }
-        res.send(403);
+
+        function foundError(error) {
+            res.status(400).json(error);
+        }
     }
 
     function findUserById(req, res) {
         var id = req.params.userId;
 
-        for(var u in users) {
-            if(users[u]._id === id) {
-                res.send(users[u]);
-                return;
-            }
+        userModel
+            .findUserById(id)
+            .then(foundUser, foundError);
+
+        function foundUser(user) {
+            res.json(user);
         }
-        res.send({});
+
+        function foundError(error) {
+            res.status(400).json(error);
+        }
     }
 
     function updateUser(req, res) {
         var id = req.params.userId;
         var newUser = req.body;
 
-        for(var u in users) {
-            if(users[u]._id === id) {
-                users[u].firstName = newUser.firstName;
-                users[u].lastName = newUser.lastName;
-                users[u].email = newUser.email;
-                res.send(200);
-                return;
-            }
+        userModel
+            .updateUser(id, newUser)
+            .then(updateSuccess, updateError);
+
+        function updateSuccess(user) {
+            res.json(user);
         }
-        res.status(400).send("User with ID: " + id + " not found");
+
+        function updateError(error) {
+            res.status(400).json(error);
+        }
     }
 
     function deleteUser(req, res) {
         var id = req.params.userId;
 
-        for(var u in users) {
-            if(users[u]._id === id) {
-                users.splice(u, 1);
-                res.send(200);
-                return
-            }
+        userModel
+            .deleteUser(id)
+            .then(deleteSuccess, deleteError);
+
+        function deleteSuccess(user) {
+            res.json(user);
         }
-        res.status(400).send("User with ID: " + id + " not found");
+
+        function deleteError(error) {
+            res.status(400).json(error);
+        }
     }
 };
