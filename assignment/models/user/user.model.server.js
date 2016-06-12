@@ -9,7 +9,10 @@ module.exports = function() {
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        pushWebsite: pushWebsite,
+        pullWebsite: pullWebsite
+        
     };
     return api;
 
@@ -42,5 +45,27 @@ module.exports = function() {
 
     function deleteUser(userId) {
         return User.remove({_id: userId});
+    }
+
+    function pushWebsite(userId, websiteId) {
+        return User.update(
+            {_id: userId},
+            { $pushAll:
+                {
+                    websites: [websiteId]
+                }
+            }
+        );
+    }
+    
+    function pullWebsite(userId, websiteId) {
+        return User.update(
+            {_id: userId},
+            {$pullAll:
+                {
+                    websites: [websiteId]
+                }
+            }
+        )
     }
 };
