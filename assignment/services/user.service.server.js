@@ -128,8 +128,8 @@ module.exports = function(app, models) {
             .deleteUser(id)
             .then(deleteSuccess, deleteError);
 
-        function deleteSuccess(user) {
-            res.json(user);
+        function deleteSuccess() {
+            res.send(true);
         }
 
         function deleteError(error) {
