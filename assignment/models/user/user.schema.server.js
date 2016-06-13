@@ -1,7 +1,8 @@
 module.exports = function() {
+    
     var mongoose = require("mongoose");
-
-    var UserSchema = mongoose.schema({
+    
+    var UserSchema = mongoose.Schema({
         username: String,
         password: String,
         firstName: String,
@@ -13,4 +14,4 @@ module.exports = function() {
     }, {collection: "assignment.user"});
 
     return UserSchema;
-}
+};

@@ -1,7 +1,6 @@
-var mongoose = require("mongoose");
-
 module.exports = function(websiteModel) {
 
+    var mongoose = require("mongoose");
     var PageSchema = require("./page.schema.server")();
     var Page = mongoose.model("Page", PageSchema);
 
