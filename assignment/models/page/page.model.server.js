@@ -83,9 +83,18 @@ module.exports = function(websiteModel) {
     }
 
     function reorderWidgets(pageId, start, end) {
-        var page = Page.findOne({_id: pageId});
-        var widgets = page.widgets;
-        widgets.splice(end, 0, widgets.splice(start, 1));
-        return page.save();
+        return Page
+            .findById(pageId)
+            .then(foundSuccess, foundError);
+
+        function foundSuccess(page) {
+            var widgets = page.widgets;
+            widgets.splice(end, 0, widgets.splice(start, 1));
+            page.save();
+        }
+
+        function foundError(error) {
+            console.log(error);
+        }
     }
 }

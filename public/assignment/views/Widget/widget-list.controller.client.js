@@ -7,6 +7,7 @@
         var vm = this;
         vm.getYoutubeUrl = getYoutubeUrl;
         vm.getHtml = getHtml;
+        vm.reorderWidgets = reorderWidgets;
 
         function init() {
             vm.userId = $routeParams.userId;
@@ -41,9 +42,18 @@
             return $sce.trustAsHtml(widget.text);
         }
 
-        $(".widget-container")
-            .sortable({
-                axis: "y"
-            })
+        function reorderWidgets(start, end) {
+            WidgetService
+                .reorderWidgets(vm.pageId, start, end)
+                .then(reorderSuccess, reorderError);
+
+            function reorderSuccess() {
+                return;
+            }
+
+            function reorderError(error) {
+                vm.error = error;
+            }
+        }
     }
 })();

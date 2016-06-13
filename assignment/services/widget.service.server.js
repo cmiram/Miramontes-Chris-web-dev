@@ -11,6 +11,7 @@ module.exports = function(app, models) {
     app.put("/api/page/:pageId/widget", reorderWidget);
 
     var widgetModel = models.widgetModel;
+    var pageModel = models.pageModel;
 
     function createWidget(req,res) {
         var newWidget = req.body;
@@ -136,8 +137,8 @@ module.exports = function(app, models) {
         var start = req.query["start"];
         var end = req.query["end"];
 
-        widgetModel
-            .reorderWidget(pageId, start, end)
+        pageModel
+            .reorderWidgets(pageId, start, end)
             .then(reorderSuccess, reorderError);
 
         function reorderSuccess() {

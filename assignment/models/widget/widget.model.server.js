@@ -9,8 +9,7 @@ module.exports = function(pageModel) {
         findAllWidgetsForPage: findAllWidgetsForPage,
         findWidgetById: findWidgetById,
         updateWidget: updateWidget,
-        deleteWidget: deleteWidget,
-        reorderWidget: reorderWidget
+        deleteWidget: deleteWidget
     }
     return api;
 
@@ -74,9 +73,5 @@ module.exports = function(pageModel) {
         function removeWidgetFromPage(widget) {
             return pageModel.pullWidget(pageId, widget._id);
         }
-    }
-
-    function reorderWidget(pageId, start, end) {
-       return pageModel.reorderWidget(pageId, start, end);
     }
 }
