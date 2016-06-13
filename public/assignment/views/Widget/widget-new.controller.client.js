@@ -16,14 +16,15 @@
 
         function createWidget(type) {
             var widget = {
-                widgetType: type,
-                pageId: vm.pageId
+                type: type,
+                _page: vm.pageId
             };
 
             WidgetService
                 .createWidget(vm.pageId, widget)
                 .then(function(response) {
-                        $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + response.data._id);
+                        var widgetId = response.data;
+                        $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + widgetId);
                     },
                     function(error){
                         vm.error = error.data;

@@ -18,7 +18,8 @@
                 UserService
                     .createUser(newUser)
                     .then(function(response) {
-                        $location.url("/profile/" + UserService.findUserByUsernameAndPassword(username, password)._id);
+                        var user = response.data
+                        $location.url("/profile/" + user._id);
                     },
                         function(error) {
                             vm.error = error.data;

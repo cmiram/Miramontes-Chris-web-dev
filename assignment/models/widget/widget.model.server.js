@@ -16,13 +16,19 @@ module.exports = function(pageModel) {
 
     function createWidget(pageId, widget) {
         widget._page = pageId;
-        var result = Widget
+        var widgetId;
+        return Widget
             .create(widget)
-            .then(addWidgetToPage);
-        return result;
+            .then(addWidgetToPage)
+            .then(returnWidgetId);
 
         function addWidgetToPage(widget) {
+            widgetId = widget._id;
             return pageModel.pushWidget(pageId, widget._id);
+        }
+
+        function returnWidgetId() {
+            return widgetId;
         }
     }
 

@@ -10,9 +10,10 @@ module.exports = function(app, models) {
     
     function createWebsite(req, res) {
         var newWebsite = req.body;
-
+        var userId = req.params.userId;
+        
         websiteModel
-            .createWebsite(newWebsite)
+            .createWebsiteForUser(userId, newWebsite)
             .then(createSuccess, createError);
 
         function createSuccess(website) {
