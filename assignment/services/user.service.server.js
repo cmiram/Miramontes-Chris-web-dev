@@ -165,7 +165,6 @@ module.exports = function(app, models) {
     }
 
     function login(req, res) {
-        console.log('here');
         var user = req.user;
         res.json(user);
     }
@@ -200,7 +199,6 @@ module.exports = function(app, models) {
     }
 
     function localStrategy(username, password, done) {
-        console.log(username + password);
         userModel
             .findUserByUsername(username)
             .then(function(user) {

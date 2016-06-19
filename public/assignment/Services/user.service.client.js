@@ -41,7 +41,12 @@
             return $http.delete(url);
         }
         
-        function login(user) {
+        function login(username, password) {
+            var user = {
+                username: username,
+                password: password
+            };
+            
             return $http.post("/api/login", user);
         }
         
