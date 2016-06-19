@@ -1,10 +1,19 @@
 module.exports = function(app, models) {
 
+    var passport = require('passport');
+    var LocalStrategy = require('passport-local').Strategy;
+
+    passport.use(new LocalStrategy(localStrategy));
+
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
     app.post("/api/user", createUser);
     app.get("/api/user", getUsers);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
+    app.post("/api/login", passport.authenticate('wam'), login);
 
     var userModel = models.userModel;
 
@@ -135,5 +144,43 @@ module.exports = function(app, models) {
         function deleteError(error) {
             res.status(400).json(error);
         }
+    }
+
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
+
+    function localStrategy(username, password, done) {
+        userModel
+            .findUserByCredentials(username, password)
+            .then(function(user) {
+                if(user.username === username && user.password === password) {
+                    return done(null, user);
+                }
+                else {
+                    return done(null, false);
+                }
+            },
+            function(error) {
+                if(error) {
+                    return done(error);
+                }
+            });
+    }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        userModel
+            .findUserById(user._id)
+            .then(function(user) {
+                    done(null, user);
+                },
+                function(error) {
+                    done(error, null);
+                })
     }
 };
