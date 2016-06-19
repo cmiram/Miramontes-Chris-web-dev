@@ -2,8 +2,16 @@ module.exports = function(app, models) {
 
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
+    var FacebookStrategy = require('passport-facebook').Strategy;
+
+    var facebookConfig = {
+        clientID : process.env.FACEBOOK_CLIENT_ID,
+        clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+    };
 
     passport.use(new LocalStrategy(localStrategy));
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -17,6 +25,12 @@ module.exports = function(app, models) {
     app.post("/api/logout", logout);
     app.post("/api/register", register);
     app.get("/api/loggedin", loggedin);
+    app.get("/auth/facebook", passport.authenticate('facebook', {scope : 'email' }));
+    app.get("auth/facebook/callback",
+        passport.authenticate('facebook', {
+            successRedirect : '/#/user',
+            failureRedirect : '/#/login'
+        }));
 
     var userModel = models.userModel;
 
@@ -177,7 +191,7 @@ module.exports = function(app, models) {
                 }
             });
     }
-    
+
     function loggedin(req, res) {
         res.send(req.isAuthenticated() ? req.user : '0');
     }
@@ -186,18 +200,23 @@ module.exports = function(app, models) {
         userModel
             .findUserByCredentials(username, password)
             .then(function(user) {
-                if(user.username === username && user.password === password) {
-                    return done(null, user);
-                }
-                else {
-                    return done(null, false);
-                }
-            },
-            function(error) {
-                if(error) {
-                    return done(error);
-                }
-            });
+                    if(user.username === username && user.password === password) {
+                        return done(null, user);
+                    }
+                    else {
+                        return done(null, false);
+                    }
+                },
+                function(error) {
+                    if(error) {
+                        return done(error);
+                    }
+                });
+    }
+
+    function facebookStrategy(token, refreshToken, profile, done) {
+        userModel
+            .findUserByFacebookId(profile.id);
     }
 
     function serializeUser(user, done) {
