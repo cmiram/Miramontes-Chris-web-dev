@@ -1,6 +1,7 @@
 module.exports = function(app, models) {
 
     var passport = require('passport');
+    var bcrypt = require('bcrypt-nodejs');
     var LocalStrategy = require('passport-local').Strategy;
     var FacebookStrategy = require('passport-facebook').Strategy;
 
@@ -175,6 +176,7 @@ module.exports = function(app, models) {
 
     function register(req, res) {
         var user = req.body;
+        user.password = bcrypt.hashSync(user.password);
 
         userModel
             .createUser(user)
