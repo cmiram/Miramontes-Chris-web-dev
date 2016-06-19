@@ -29,6 +29,7 @@ else {
     connectionString = 'mongodb://127.0.0.1:27017/webdev';
 }
 
+console.log(connectionString);
 mongoose.connect(connectionString);
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
