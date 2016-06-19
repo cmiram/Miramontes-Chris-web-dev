@@ -2,10 +2,6 @@ module.exports = function(app, models) {
     var multer = require('multer'); // npm install multer --save
     var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
-    var key = process.env.FLICKR_KEY;
-    var secret = process.env.FLICKR_SECRET;
-    var urlBase = "https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&api_key=API_KEY&text=TEXT&callback=JSON_CALLBACK";
-
     app.post("/api/upload/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId", upload.single('myFile'), uploadImage);
     app.post("/api/page/:pageId/widget", createWidget);
     app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
@@ -13,7 +9,6 @@ module.exports = function(app, models) {
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
     app.put("/api/page/:pageId/widget", reorderWidget);
-    app.get("/api/widget/flickrSearchUrl", getFlickrSearchUrl);
 
     var widgetModel = models.widgetModel;
     var pageModel = models.pageModel;
@@ -153,13 +148,5 @@ module.exports = function(app, models) {
         function reorderError(error) {
             res.status(400).json(error);
         }
-    }
-
-    function getFlickrSearchUrl(req, res) {
-        var searchTerm = req.data;
-        var url = urlBase.replace("API_KEY", key).replace("TEXT", searchTerm);
-        res.json({
-            url: url
-        });
     }
 };
