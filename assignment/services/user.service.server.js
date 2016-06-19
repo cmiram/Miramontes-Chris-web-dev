@@ -15,6 +15,7 @@ module.exports = function(app, models) {
     app.delete("/api/user/:userId", deleteUser);
     app.post("/api/login", passport.authenticate('wam'), login);
     app.post("/api/logout", logout);
+    app.post("/api/register", register);
 
     var userModel = models.userModel;
 
@@ -155,6 +156,25 @@ module.exports = function(app, models) {
     function logout(req, res) {
         req.logOut();
         res.send(200);
+    }
+
+    function register(req, res) {
+        var user = req.body;
+
+        userModel
+            .createUser(user)
+            .then(function(user) {
+                if(user) {
+                    req.login(user, function(error) {
+                        if(error) {
+                            res.status(400).send(error);
+                        }
+                        else {
+                            res.json(user);
+                        }
+                    });
+                }
+            });
     }
 
     function localStrategy(username, password, done) {
