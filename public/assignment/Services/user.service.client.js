@@ -11,7 +11,8 @@
             findUserById: findUserById,
             updateUser: updateUser,
             deleteUser: deleteUser,
-            login: login
+            login: login,
+            logout: logout
         };
         return api;
 
@@ -39,6 +40,10 @@
         
         function login(user) {
             return $http.post("/api/login", user);
+        }
+        
+        function logout(user) {
+            return $http.post("/api/logout");
         }
     }
 })();
