@@ -16,6 +16,7 @@ module.exports = function(app, models) {
     app.post("/api/login", passport.authenticate('wam'), login);
     app.post("/api/logout", logout);
     app.post("/api/register", register);
+    app.get("/api/loggedin", loggedin);
 
     var userModel = models.userModel;
 
@@ -175,6 +176,10 @@ module.exports = function(app, models) {
                     });
                 }
             });
+    }
+    
+    function loggedin(req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
     }
 
     function localStrategy(username, password, done) {

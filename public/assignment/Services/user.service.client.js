@@ -13,7 +13,8 @@
             deleteUser: deleteUser,
             login: login,
             logout: logout,
-            register: register
+            register: register,
+            checkLoggedin: checkLoggedin
         };
         return api;
 
@@ -49,6 +50,10 @@
         
         function register(user) {
             return $http.post("/api/register", user);
+        }
+        
+        function checkLoggedin() {
+            return $http.get("/api/loggedin");
         }
     }
 })();
