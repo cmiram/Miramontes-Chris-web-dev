@@ -1,9 +1,9 @@
-module.exports = function(app, models) {
+var passport = require('passport');
+var bcrypt = require('bcrypt-nodejs');
+var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 
-    var passport = require('passport');
-    var bcrypt = require('bcrypt-nodejs');
-    var LocalStrategy = require('passport-local').Strategy;
-    var FacebookStrategy = require('passport-facebook').Strategy;
+module.exports = function(app, models) {
 
     var facebookConfig = {
         clientID : process.env.FACEBOOK_CLIENT_ID,
@@ -11,8 +11,8 @@ module.exports = function(app, models) {
         callbackURL  : process.env.FACEBOOK_CALLBACK_URL
     };
 
-    passport.use(new LocalStrategy(localStrategy));
-    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+    passport.use('wam', new LocalStrategy(localStrategy));
+    passport.use('facebook', new FacebookStrategy(facebookConfig, facebookStrategy));
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -165,6 +165,7 @@ module.exports = function(app, models) {
     }
 
     function login(req, res) {
+        console.log('here');
         var user = req.user;
         res.json(user);
     }
@@ -199,10 +200,11 @@ module.exports = function(app, models) {
     }
 
     function localStrategy(username, password, done) {
+        console.log(username + password);
         userModel
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(function(user) {
-                    if(user.username === username && user.password === password) {
+                    if(user && bcrypt.compareSync(password, user.password)) {
                         return done(null, user);
                     }
                     else {

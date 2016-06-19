@@ -22,6 +22,7 @@
             var url = "/api/user";
             return $http.post(url, user);
         }
+        
         function findUserByUsernameAndPassword(username, password) {
             var url = "/api/user?username=" + username + "&password=" + password;
             return $http.get(url);

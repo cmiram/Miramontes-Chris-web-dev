@@ -8,21 +8,19 @@
 
         vm.login = login;
 
-        function login(username, password) {
+        function login(username, $rootScope, password) {
+            var user = {
+                username: username,
+                password: password
+            }
+            
             UserService
-                .findUserByUsernameAndPassword(username, password)
-                .then(
-                    function(response) {
-                        var user = response.data;
-                        if (user) {
-                            var id = user._id;
-                            $location.url("/profile/" + id);
-                        }
-                    },
-                    function(error) {
-                        vm.error = "Username or password not correct";
-                    }
-                );
+                .login(user)
+                .then(function(res) {
+                    var user = res.data;
+                    $rootScope.currentUser = user;
+                    $location.url("/user/" + user._id);
+                })
         }
     }
 })();

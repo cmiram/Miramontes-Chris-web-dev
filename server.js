@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+var mongoose = require("mongoose");
 
 app.use(cookieParser());
 app.use(session({secret: process.env.SESSION_SECRET }));
@@ -15,6 +16,8 @@ app.use(passport.session());
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
 
+var connectionString;
+
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
     connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
         process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
@@ -22,6 +25,11 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
         process.env.OPENSHIFT_APP_NAME;
 }
+else {
+    connectionString = 'mongodb://127.0.0.1:27017/webdev';
+}
+
+mongoose.connect(connectionString);
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;

@@ -83,7 +83,6 @@
                 .then(
                     function(response) {
                         var user = response.data;
-                        console.log(user);
                         if(user == '0') {
                             deferred.reject();
                             $rootScope.currentUser = null;
