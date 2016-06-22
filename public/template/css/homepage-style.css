@@ -3,3 +3,11 @@
     display: block;
     margin: auto;
 }
+
+.navbar-header {
+    margin-bottom: 10px;
+}
+
+.intro {
+    margin-top: 60px;
+}
